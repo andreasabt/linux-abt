@@ -1,55 +1,42 @@
 #ifndef BOTCLIENT_H
 #define BOTCLIENT_H
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <cstdio>
-#include <cstring>
-#include <time.h>
-#include <stdio.h>
-
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <unistd.h>
-
 #include <vector>
 #include <algorithm>
 #include <sstream>
 
-#define BUF_SIZE 1024
+#include <sqlite3.h>
 
-using namespace std;
+#include "ConnextionIRC.h"
+#include "SQLChecker.h"
+#include "MessageHandler.h"
 
-class BotClient {
+class BotClient
+{
 public:
-    BotClient(string botname, string password);
+    BotClient(string nname, string pw);
     ~BotClient();
 
-    int start(string host, int port, string channel);
-private:
-    int sock;
+    ConnextionIRC      *conn;
 
-    string host;
-    int port;
-    string channel;
+    string          nname;
+    string          pw;
+    bool            logger;
 
-    string botname;
-    string password;
+    void            BotClientLoop();
+    void    ConnectBotClient(string host, int port, string channel);
+    int     ChatBotFunctions(string buffer);
+    void    Nick(string nname);
+    void    User(string username);
+    void    Join(string channel);
+    void    Leave(string channel);
+    void    ChangeTopic(string topic);
+    void    Logging(bool logger);
+    void    ClearLog();
+    void    LogChat(string name, string msg);
+    void    ShowLog();
+    void    ShowLastSeen(string nname);
 
-    void connectIrc(string host, int port, string channel);
-    void disconnect();
-
-    void sendmsg(string msg);
-
-    void ping(string buf);
-    int parse(string buf);
-    int botaction(string buf);
-
-    void login();
 };
 
 #endif
