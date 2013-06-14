@@ -24,10 +24,20 @@
 using namespace std;
 
 class BotClient {
-    BotClient();
+public:
+    BotClient(string botname, string password);
     ~BotClient();
 
-    void connect();
+    int sock;
+
+    string host;
+    int port;
+    string channel;
+
+    string botname;
+    string password;
+
+    void connect(string host, int port, string channel);
     void disconnect();
 
     void sendmsg(string msg);
