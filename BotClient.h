@@ -16,10 +16,11 @@
 #include <netdb.h>
 #include <unistd.h>
 
-#include <sqlite3.h>
 #include <vector>
 #include <algorithm>
 #include <sstream>
+
+#define BUF_SIZE 1024
 
 using namespace std;
 
@@ -28,6 +29,8 @@ public:
     BotClient(string botname, string password);
     ~BotClient();
 
+    int start(string host, int port, string channel);
+private:
     int sock;
 
     string host;
@@ -37,17 +40,16 @@ public:
     string botname;
     string password;
 
-    void connect(string host, int port, string channel);
+    void connectIrc(string host, int port, string channel);
     void disconnect();
 
     void sendmsg(string msg);
 
     void ping(string buf);
-    void parse(string buf);
-    void botaction(string buf);
+    int parse(string buf);
+    int botaction(string buf);
 
     void login();
-
 };
 
 #endif
