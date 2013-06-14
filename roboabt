@@ -1,0 +1,36 @@
+.TH  "" "" 
+.SS IRC-BOT
+.PP
+RoboAbt
+.SS SYNOPSIS
+.PP
+\&./roboAbt server port channel
+.SS DESCRIPTION
+.IP \[bu] 2
+RoboAbt meldet sich auf einem IRC-Server an und reagiert auf bestimmte
+Nachrichten
+.IP \[bu] 2
+Server, Port und Channel müssen beim Start übergeben werden.
+.PP
+RoboAbt hört auf folgende Nachrichten:
+.SS OPTIONS
+.IP \[bu] 2
+-change_nick name - um den Namen des Bots zu ändern
+.IP \[bu] 2
+-log on/off - um den Chat mitzuloggen oder nicht
+.IP \[bu] 2
+-last_seen_user name - um zu sehen wann welcher User etwas geschrieben
+hat
+.IP \[bu] 2
+-show_chatlog - um den Chatlog anzuzeigen
+.IP \[bu] 2
+-join channel - den Bot einen channel beitreten lassen
+.IP \[bu] 2
+-leave channel - den Bot einen channel verlassen lassen
+.IP \[bu] 2
+-change_topic channel text - um das Topic in einem channel zu ändern
+.IP \[bu] 2
+-quit - um den Bot abzumelden
+.SS AUTHOR
+.PP
+Andreas Abt andreas.abt\@fh-heidelberg.de
